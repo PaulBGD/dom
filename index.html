@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom$</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/simplex/bootstrap.min.css" rel="stylesheet" integrity="sha256-4nVETqQoIoCwuephcXpJ501G8B5sgBHb1ZsKU/D476I= sha512-cfSmkkLRDAcUNaJxRRWopCyEGX43UkWCAOl2wErYMBGOQVWwOsZ7IFuXScF9H/6nMGbmsgV4m5/xYfesyvHTxw==" crossorigin="anonymous">
+    <style>
+        h2 {
+            margin: 30px 0 10px;
+        }
+
+        p {
+            color: #444;
+        }
+
+        @media (min-width: 975px) {
+            .padding-top {
+                padding-top: 50px;
+                padding-bottom: 50px;
+            }
+
+            #navbar-side {
+                position: fixed;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 padding-top">
+            <div id="home">
+                <h1><a href="#dom-" name="dom-" id="dom-" class="anchor"></a>dom$</h1>
+                <p>&lt; 1KB library for DOM selections in JavaScript</p>
+            </div>
+            <div id="download">
+                <h2><a href="#download" class="anchor"></a>Download</h2>
+                <p><a href="src/dom$.js" class="btn btn-lg btn-primary">Development Version</a> <a href="src/dom$.min.js" class="btn btn-lg btn-primary">Production Version</a></p>
+            </div>
+            <div id="about">
+                <h2><a href="#about" class="anchor"></a>About</h2>
+                <p>dom$ supports a lot of browsers, even back to IE8! It's an easy way to create, modify, and find DOM elements dynamically.</p>
+                <p>This library also works well with the <a href="https://github.com/PaulBGD/Stream.js">Stream.js</a> library.</p>
+            </div>
+            <div id="examples">
+                <h2><a href="#examples" class="anchor"></a>Examples</h2>
+                <p>Adding 2 DOM elements, then using Stream.js to find ones with a certain class</p>
+                <pre><code class="javascript">var text = dom$(&#39;p.text&#39;);
+var elements = dom$(&#39;&lt;p class=&quot;text&quot;&gt;This is more text&lt;/p&gt;&lt;p&gt;Even more!&lt;/p&gt;&#39;);
+elements.each(document.body.appendChild.bind(document.body));
+
+new Stream(text.getElements())
+.filter(function (elem) { return elem.innerHTML.indexOf(&#39;text&#39;) &gt; 0 })
+.forEach(console.log.bind(console));</code></pre>
+            </div>
+            <div id="functions">
+                <h2><a href="#functions" class="anchor"></a>Functions</h2>
+                <h3><code>dom$(elements) =&gt; dom$</code></h3>
+                <p>Creates a new dom$.</p>
+                <h3><code>dom$.prototype.each(function(element:Element)) =&gt; void</code></h3>
+                <p>Iterates through all of the elements.</p>
+                <h3><code>dom$.prototype.getElements() =&gt; Element[]</code></h3>
+                <p>Returns all elements as an array.</p>
+            </div>
+        </div>
+        <div class="col-md-2 padding-top hidden-xs hidden-sm">
+            <ul id="navbar-side" class="nav nav-pills nav-stacked padding-top">
+                <li><a href="#home" class="spy">Home</a></li>
+                <li><a href="#download" class="spy">Download</a></li>
+                <li><a href="#about" class="spy">About</a></li>
+                <li><a href="#examples" class="spy">Examples</a></li>
+                <li><a href="#functions" class="spy">Functions</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="//cdn.jsdelivr.net/bootstrap.native/0.9.6/bootstrap-native.min.js"></script>
+<script src="src/stream.js"></script>
+<script src="https://raw.githubusercontent.com/domchristie/to-markdown/master/dist/to-markdown.js"></script>
+<script>
+    (function () {
+        var targets = {};
+
+        var spies = document.getElementsByClassName('spy');
+        for (var i = 0, max = spies.length; i < max; i++) {
+            var spy = spies[i];
+            targets[spy.href] = spy.parentNode;
+        }
+
+        var updating = false;
+
+        window.addEventListener('scroll', function () {
+            if (!updating) {
+                updating = true;
+                setTimeout(function () {
+                    update();
+                    updating = false;
+                }, 250);
+            }
+        });
+
+        function update() {
+            var triggered = false;
+            for (var property in targets) {
+                if (targets.hasOwnProperty(property)) {
+                    var target = document.getElementById(property.split('#')[1]);
+                    if (!triggered && target && checkVisible(target)) {
+                        targets[property].classList.add('active');
+                        triggered = true;
+                    } else {
+                        targets[property].classList.remove('active');
+                    }
+                }
+            }
+        }
+
+        function checkVisible(elm) {
+            var vpH = window.innerHeight, // Viewport Height
+                    st = window.scrollY, // Scroll Top
+                    y = offset(elm),
+                    elementHeight = elm.clientHeight;
+
+            return ((y < (vpH + st)) && (y > (st - elementHeight)));
+        }
+
+        function offset(elem) {
+            var y = elem.offsetTop;
+
+            while (elem = elem.offsetParent) {
+                y += elem.offsetTop;
+            }
+
+            return y;
+        }
+
+        update();
+    })();
+</script>
+</body>
+</html>
