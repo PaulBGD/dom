@@ -5,7 +5,7 @@
   "main": "src/dom$.js",
   "repository": {
     "type": "git",
-    "url": "git@https://github.com/PaulBGD/HashMap.js.git"
+    "url": "git@https://github.com/PaulBGD/dom.js.git"
   },
   "keywords": [
     "dom",
@@ -14,7 +14,7 @@
   "author": "Paul Sauve <paul@burngames.net> (http://paulb.gd/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/PaulBGD/dom$/issues"
+    "url": "https://github.com/PaulBGD/dom/issues"
   },
-  "homepage": "https://github.com/PaulBGD/dom$#readme"
+  "homepage": "https://github.com/PaulBGD/dom#readme"
 }
