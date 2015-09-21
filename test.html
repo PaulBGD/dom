@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<script src="src/dom$.min.js"></script>
+<script>
+    dom$('<p>4</p>').each(document.body.appendChild.bind(document.body));
+    dom$('p').each(function () {
+        this.style.color = 'blue';
+    });
+</script>
+</body>
+</html>

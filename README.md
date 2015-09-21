@@ -13,7 +13,7 @@ This library also works well with the [Stream.js](https://github.com/PaulBGD/Str
 
 ## Examples
 
-Adding 2 DOM elements, then using Stream.js to find ones with a certain class
+Adding 2 DOM elements, then using Stream.js to find ones with a certain class:
 
 ```javascript
 var text = dom$('p.text');
@@ -25,16 +25,24 @@ new Stream(text.getElements())
         .forEach(console.log.bind(console));
 ```
 
+Setting all headers to blue:
+
+```javascript
+dom$('h1, h2, h3, h4, h5').each(function (elem) {
+    elem.style.color = 'blue'; // using `this` would also work here
+});
+```
+
 ## Functions
 
-### `dom$(elements) => dom$`
+#### `dom$(elements) => dom$`
 
 Creates a new dom$.
 
-### `dom$.prototype.each(function(element:Element)) => void`
+#### `dom$.prototype.each(function(element:Element)) => void`
 
 Iterates through all of the elements.
 
-### `dom$.prototype.getElements() => Element[]`
+#### `dom$.prototype.getElements() => Element[]`
 
 Returns all elements as an array.

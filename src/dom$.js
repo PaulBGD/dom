@@ -1,10 +1,9 @@
-(function (global) {
+(function (global, document, TEMP_DIV) {
 
-    var DOCUMENT = document;
-    var TEMP_DIV = DOCUMENT.createElement('div');
+    TEMP_DIV = document.createElement('div');
 
     function dom$(elements) {
-        if (this == global) {
+        if (!(this instanceof dom$)) {
             return new dom$(elements);
         }
         var arr = [];
@@ -33,7 +32,7 @@
     var prototype = dom$.prototype;
 
     prototype['each'] = function (func) {
-        var elements = this.getElements();
+        var elements = this['getElements']();
         var length = elements.length;
         while (length--) {
             var element = elements[length];
@@ -75,20 +74,20 @@
                     if (first == '#') {
                         element = split(element, '#');
                         return function() {
-                            return DOCUMENT.getElementById(element);
+                            return document.getElementById(element);
                         };
                     } else if (first == '.') {
                         // returns an HTMLCollection which is always updated, no need to constantly query!
-                        element = DOCUMENT.getElementsByClassName(split(element, '.'));
+                        element = document.getElementsByClassName(split(element, '.'));
                         return returnValue(element);
                     } else if (/^[0-9a-zA-Z]+$/.test(element)) {
                         // returns an HTMLCollection which is always updated, no need to constantly query!
-                        element = DOCUMENT.getElementsByTagName(element);
+                        element = document.getElementsByTagName(element);
                         return returnValue(element);
                     }
                 }
                 return function() {
-                    return DOCUMENT.querySelectorAll(element);
+                    return document.querySelectorAll(element);
                 };
             }
         } else {
@@ -111,4 +110,4 @@
     } else {
         global['dom$'] = dom$;
     }
-})(this);
+})(this, document);
