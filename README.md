@@ -7,6 +7,8 @@
 
 ## About
 
+Even though it's used less and less, jQuery is still used a lot for its single function that does a lot of different DOM operations. With the increasing browsers support for simple features, some of jQuery's cross-browser compatibility methods have become outdated. This library is made to make it easy to do anything with the DOM, but still use the (much faster) vanilla DOM methods.
+
 dom$ supports a lot of browsers, even back to IE8! It's an easy way to create, modify, and find DOM elements dynamically.
 
 This library also works well with the [Stream.js](https://github.com/PaulBGD/Stream.js) library.
