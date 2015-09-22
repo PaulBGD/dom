@@ -1,5 +1,5 @@
 {
-  "name": "dom$",
+  "name": "dom-dollar",
   "version": "1.0.0",
   "description": "< 1KB library for DOM selections in JavaScript",
   "main": "src/dom$.js",
