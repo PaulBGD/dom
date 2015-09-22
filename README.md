@@ -15,6 +15,14 @@ This library also works well with the [Stream.js](https://github.com/PaulBGD/Str
 
 ## Examples
 
+Setting all headers to blue:
+
+```javascript
+dom$('h1, h2, h3, h4, h5').each(function (elem) {
+    elem.style.color = 'blue'; // using `this` would also work here
+});
+```
+
 Adding 2 DOM elements, then using Stream.js to find ones with a certain class:
 
 ```javascript
@@ -27,13 +35,6 @@ new Stream(text.getElements())
         .forEach(console.log.bind(console));
 ```
 
-Setting all headers to blue:
-
-```javascript
-dom$('h1, h2, h3, h4, h5').each(function (elem) {
-    elem.style.color = 'blue'; // using `this` would also work here
-});
-```
 
 ## Functions
 
