@@ -5,15 +5,24 @@
     <title>Test</title>
 </head>
 <body>
-<p>1</p>
+<p class="odd">1</p>
+
 <p>2</p>
-<p>3</p>
-<script src="src/dom$.min.js"></script>
+
+<p class="odd">3</p>
+<div class="header">
+    <h2>Big <small>Small</small></h2>
+</div>
+<script src="src/dom$.js"></script>
 <script>
     dom$('<p>4</p>').each(document.body.appendChild.bind(document.body));
     dom$('p').each(function () {
         this.style.color = 'blue';
     });
+    dom$('.header').empty().each(function() {
+        this.appendChild(dom$('<h3>Replacement</h3>').getElements()[0]);
+    });
+    dom$('p.odd').remove();
 </script>
 </body>
 </html>

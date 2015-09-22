@@ -42,9 +42,17 @@ new Stream(text.getElements())
 
 Creates a new dom$.
 
-#### `dom$.prototype.each(function(element:Element)) => void`
+#### `dom$.prototype.each(function(element:Element)) => dom$`
 
-Iterates through all of the elements.
+Iterates through all of the elements and returns instance of self.
+
+#### `dom$.prototype.empty() => dom$`
+
+Removes all child nodes and returns instance of self.
+
+#### `dom$.prototype.remove() => dom$`
+
+Removes all nodes and returns instance of self.
 
 #### `dom$.prototype.getElements() => Element[]`
 

@@ -38,6 +38,23 @@
             var element = elements[length];
             func.call(element, element);
         }
+        return this;
+    };
+
+    prototype['empty'] = function () {
+        this['each'](function (element) {
+            while (element.hasChildNodes()) {
+                element.removeChild(element.lastChild);
+            }
+        });
+        return this;
+    };
+
+    prototype['remove'] = function () {
+        this['each'](function (element) {
+            element.parentNode.removeChild(element);
+        });
+        return this;
     };
 
     prototype['getElements'] = function () {
@@ -73,7 +90,7 @@
                     var first = element.charAt(0);
                     if (first == '#') {
                         element = split(element, '#');
-                        return function() {
+                        return function () {
                             return document.getElementById(element);
                         };
                     } else if (first == '.') {
@@ -86,7 +103,7 @@
                         return returnValue(element);
                     }
                 }
-                return function() {
+                return function () {
                     return document.querySelectorAll(element);
                 };
             }
@@ -100,7 +117,7 @@
     }
 
     function returnValue(value) {
-        return function() {
+        return function () {
             return value;
         };
     }
